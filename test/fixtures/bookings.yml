@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 2018-01-10 10:43:46
+  date: 2018-01-10
+  people: 1
+  restaurant: one
+  menu: one
+
+two:
+  time: 2018-01-10 10:43:46
+  date: 2018-01-10
+  people: 1
+  restaurant: two
+  menu: two

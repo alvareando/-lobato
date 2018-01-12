@@ -10,10 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180107153754) do
+ActiveRecord::Schema.define(version: 20180110104542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "booking_participations", force: :cascade do |t|
+    t.bigint "booking_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_booking_participations_on_booking_id"
+    t.index ["user_id"], name: "index_booking_participations_on_user_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.time "time"
+    t.date "date"
+    t.integer "people"
+    t.bigint "restaurant_id"
+    t.bigint "menu_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_id"], name: "index_bookings_on_menu_id"
+    t.index ["restaurant_id"], name: "index_bookings_on_restaurant_id"
+  end
+
+  create_table "dishes", force: :cascade do |t|
+    t.string "name"
+    t.string "price"
+    t.text "description"
+    t.string "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "menu_id"
+    t.index ["menu_id"], name: "index_dishes_on_menu_id"
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.string "name"
+    t.bigint "restaurant_id"
+    t.string "menu_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string "name"
+    t.string "photo"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_restaurants_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +82,10 @@ ActiveRecord::Schema.define(version: 20180107153754) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "booking_participations", "bookings"
+  add_foreign_key "booking_participations", "users"
+  add_foreign_key "bookings", "menus"
+  add_foreign_key "bookings", "restaurants"
+  add_foreign_key "menus", "restaurants"
+  add_foreign_key "restaurants", "users"
 end

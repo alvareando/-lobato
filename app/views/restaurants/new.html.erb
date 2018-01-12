@@ -1,0 +1,4 @@
+<%= simple_form_for [@restaurant] do |f| %>
+  <%= f.input :name, required: true, label: 'Nombre' %>
+  <%= f.submit "Añadir restaurante", class: "btn btn-primary" %>
+<% end %>

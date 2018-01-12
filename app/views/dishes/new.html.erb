@@ -1,0 +1,6 @@
+<%= simple_form_for @dish, url: menu_dishes_path(@menu) do |f| %>
+  <%= f.input :name, required: true, label: 'Nombre' %>
+  <%= f.input :description, required: true, placeholder:"Descripción del plato", label: 'Descripción' %>
+  <%= f.input :price, required: true, label: 'Precio (€)'%>
+  <%= f.submit "Añadir plato", class: "btn btn-primary" %>
+<% end %>
