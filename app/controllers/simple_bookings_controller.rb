@@ -8,8 +8,9 @@ class SimpleBookingsController < ApplicationController
 
   def create
     @simple_booking = SimpleBooking.new(simple_booking_params)
-    @user = @restaurant.user
-    if @simple_booking.save
+    @simple_booking.user = @restaurant.user
+    @simple_booking.restaurant = @restaurant
+    if @simple_booking.save!
       redirect_to root_path, notice: "Gracias por reservar en el #{@simple_booking.restaurant.name}"
     else
       render :new, alert: "Lo sentimos, algo ha ido mal!"
