@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_one :restaurant
   has_many :booking_participations
+  has_many :simple_bookings
 end

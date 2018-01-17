@@ -1,5 +1,5 @@
 <%= simple_form_for [@restaurant, @menu], url: menus_path do |f| %>
   <%= f.input :name, required: true, label: 'Nombre' %>
   <%= f.input :menu_price, required: true, label: 'Precio total del menu' %>
-  <%= f.submit "Añadir restaurante", class: "btn btn-primary" %>
+  <%= f.submit "Añadir menú", class: "btn btn-primary" %>
 <% end %>

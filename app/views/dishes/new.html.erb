@@ -2,5 +2,7 @@
   <%= f.input :name, required: true, label: 'Nombre' %>
   <%= f.input :description, required: true, placeholder:"Descripción del plato", label: 'Descripción' %>
   <%= f.input :price, required: true, label: 'Precio (€)'%>
+  <%= f.input :photo, label: 'Añade una foto' %>
+  <%= f.input :photo_cache, as: :hidden %>
   <%= f.submit "Añadir plato", class: "btn btn-primary" %>
 <% end %>

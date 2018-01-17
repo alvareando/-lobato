@@ -8,7 +8,7 @@ before_action :set_restaurant
     new_menu = Menu.new(menu_params)
     new_menu.restaurant = @restaurant
     if new_menu.save
-      redirect_to root_path
+      redirect_to "/dashboard"
     else
       render :new
     end

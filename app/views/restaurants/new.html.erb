@@ -1,4 +1,14 @@
-<%= simple_form_for [@restaurant] do |f| %>
-  <%= f.input :name, required: true, label: 'Nombre' %>
-  <%= f.submit "Añadir restaurante", class: "btn btn-primary" %>
-<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <h2 class= "text-centre">Restaurante</h2>
+      <%= simple_form_for [@restaurant] do |f| %>
+        <%= f.input :name, required: true, label: 'Nombre de tu restaurante' %>
+        <%= f.input :photo, label: 'Añade una foto' %>
+        <%= f.input :photo_cache, as: :hidden %>
+        <%= f.submit "Añadir restaurante", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

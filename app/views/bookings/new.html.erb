@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="from-post">
+        <h1>Haz tu reserva!</h1>
+        <%= simple_form_for [@restaurant, @booking] do |f| %>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.input :name, label: "Nombre" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :last_name, label: "Apellido(s)" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.input :email, label: "Email" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :phone, label: "Teléfono de contacto" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.input :time, label: "¿A qué hora?", as: :time %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :date, label: "¿Cuando?", as: :date, start_year: Date.today.year,
+                                end_year: Date.today.year + 12, discard_day: true,
+                                order: [:month, :year] %>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label check_boxes optional">Dishes</label>
+          <input type="hidden" name="booking[dish_ids][]" value="">
+          <div class="dish-choices">
+            <% @menus.each do |menu| %>
+            <% menu.dishes.each do |dish| %>
+              <input type="hidden" value="<%= dish.id %>" name="booking[dish_ids][]" id="booking_dish_ids_<%= dish.id %>">
+              <label class= "dish-choice" for="booking_dish_ids_<%= dish.id %>">
+                <%= dish.name %>
+                <i class="fa fa-check"></i>
+              </label>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+        <%= f.submit "Reservar", class: "btn btn-primary"  %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+

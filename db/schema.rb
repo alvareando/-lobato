@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180110104542) do
+ActiveRecord::Schema.define(version: 20180117003634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,8 +32,16 @@ ActiveRecord::Schema.define(version: 20180110104542) do
     t.bigint "menu_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "email"
     t.index ["menu_id"], name: "index_bookings_on_menu_id"
     t.index ["restaurant_id"], name: "index_bookings_on_restaurant_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "category"
   end
 
   create_table "dishes", force: :cascade do |t|
@@ -44,6 +52,8 @@ ActiveRecord::Schema.define(version: 20180110104542) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "menu_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_dishes_on_category_id"
     t.index ["menu_id"], name: "index_dishes_on_menu_id"
   end
 
@@ -63,6 +73,20 @@ ActiveRecord::Schema.define(version: 20180110104542) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_restaurants_on_user_id"
+  end
+
+  create_table "simple_bookings", force: :cascade do |t|
+    t.time "time"
+    t.date "date"
+    t.integer "people"
+    t.string "name"
+    t.string "last_name"
+    t.string "email"
+    t.string "phone"
+    t.bigint "restaurant_id"
+    t.bigint "user_id"
+    t.index ["restaurant_id"], name: "index_simple_bookings_on_restaurant_id"
+    t.index ["user_id"], name: "index_simple_bookings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,6 +110,9 @@ ActiveRecord::Schema.define(version: 20180110104542) do
   add_foreign_key "booking_participations", "users"
   add_foreign_key "bookings", "menus"
   add_foreign_key "bookings", "restaurants"
+  add_foreign_key "dishes", "categories"
   add_foreign_key "menus", "restaurants"
   add_foreign_key "restaurants", "users"
+  add_foreign_key "simple_bookings", "restaurants"
+  add_foreign_key "simple_bookings", "users"
 end

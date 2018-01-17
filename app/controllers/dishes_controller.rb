@@ -22,7 +22,7 @@ class DishesController < ApplicationController
     @menu = Menu.find(params[:menu_id])
   end
   def dish_params
-    params.require(:dish).permit(:name, :description, :price, :menu_id)
+    params.require(:dish).permit(:name, :description, :price, :menu_id, :photo)
   end
 
 
