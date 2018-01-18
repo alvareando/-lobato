@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :restaurants, only: [:new, :create] do
     resources :bookings, only: [:new, :create]
-    resources :simple_bookings, only: [:new, :create]
+    resources :simple_bookings, only: [:new, :create, :show]
 
   end
 

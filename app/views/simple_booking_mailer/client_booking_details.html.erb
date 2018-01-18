@@ -1,0 +1,18 @@
+<h1>Hola <%= @simple_booking.name %>, aqui tienes los detalles de tu reserva!</h1>
+
+<div class="row">
+  <p>Nombre del restaurante: <strong><%= @simple_booking.restaurant.name %></strong></p>
+</div>
+<div class="row">
+  <p>Fecha y hora: <strong><%= @simple_booking.date.strftime("%A, %e %B") %></strong> - <strong><%= @simple_booking.time.strftime("%H:%M") %></strong>  horas</p>
+</div>
+<div class="row">
+  <p>Número de personas: <strong><%= @simple_booking.people %></strong> </p>
+</div>
+<div class="row">
+  <p>A nombre de: <strong><%= @simple_booking.name %> <%= @simple_booking.last_name %></strong> </p>
+</div>
+<div class="row">
+  <p> Email de la reserva: <strong><%= @simple_booking.email %></strong> </p>
+  <p>Teléfono de contacto: <strong><%= @simple_booking.phone %></strong> </p>
+</div>

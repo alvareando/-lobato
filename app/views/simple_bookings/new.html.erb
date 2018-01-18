@@ -1,38 +1,52 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <% img = cl_image_path @restaurant.photo %>
+    <div class="banner" style="background-image: linear-gradient(-225deg, rgba(200,200,200,0.6) 0%, rgba(0,0,0,0.6) 50%), url('<%= img %>');">
+      <div class="banner-content">
+        <h1><%= @restaurant.name %></h1>
+        <p>Un clásico renovado</p>
+        <a href="#form-start" class="btn btn-treehouse btn-lg">Reservar ahora</a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3" id= "form-start">
       <div class="from-post">
-        <h1>Haz tu reserva!</h1>
+        <h1 style="margin-top: 40px; margin-bottom: 40px; text-align: center;">¡Haz tu reserva!</h1>
         <%= simple_form_for [@restaurant, @simple_booking] do |f| %>
           <div class="row">
             <div class="col-xs-6">
-              <%= f.input :name, label: "Nombre" %>
+              <%= f.input :name, required: :true, label: "Nombre" %>
             </div>
             <div class="col-xs-6">
-              <%= f.input :last_name, label: "Apellido(s)" %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-6">
-              <%= f.input :email, label: "Email" %>
-            </div>
-            <div class="col-xs-6">
-              <%= f.input :phone, label: "Teléfono de contacto" %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-6">
-              <%= f.input :time, label: "¿A qué hora?", as: :time %>
-            </div>
-            <div class="col-xs-6">
-              <%= f.input :date, label: "¿Cuando?", as: :date, start_year: Date.today.year,
-                                  end_year: Date.today.year + 12,
-                                  order: [:day, :month, :year] %>
+              <%= f.input :last_name, required: :true, label: "Apellido(s)" %>
             </div>
           </div>
           <div class="row">
             <div class="col-xs-12">
-               <%= f.submit "Reservar", class: "btn btn-primary"  %>
+              <%= f.input :people, label: "¿Cuántas personas?", required: :true, collection: 1..10 %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <%= f.input :time, label: "¿A qué hora?", as: :time, required: :true, minute_step: 15 %>
+            </div>
+            <div class="col-xs-6">
+              <%= f.input :date, label: "¿Cuando?", required: :true, as: :date, start_year: Date.today.year,
+                                  end_year: Date.today.year + 1,
+                                  order: [:day, :month, :year] %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <%= f.input :email, required: :true, label: "Email" %>
+            </div>
+            <div class="col-xs-6">
+              <%= f.input :phone, required: :true, label: "Teléfono de contacto" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+               <%= f.submit "Reservar", class: "btn btn-treehouse btn-lg", style:"
+                width: 100%; margin-top: 20px;"%>
             </div>
           </div>
         <% end %>
