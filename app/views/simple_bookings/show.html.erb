@@ -1,0 +1,35 @@
+<h1 class="text-center">¡Tu reserva está casi confirmada!</h1>
+<p class="text-center">El restaurante te contactará lo antes posible para confirmar tu reserva</p>
+<div class="text-center">
+  <table class="table">
+    <tbody>
+      <tr>
+        <td><strong>Nombre del restaurante:</strong> </td>
+        <td><%= @simple_booking.restaurant.name %></td>
+      </tr>
+      <tr>
+        <td><strong>Fecha y hora</strong></td>
+        <td><%= @simple_booking.date.strftime("%A, %e %B") %> - <%= @simple_booking.time.strftime("%I %p") %></td>
+      </tr>
+      <tr>
+        <td><strong>Personas</strong></td>
+        <td><%= @simple_booking.people %></td>
+      </tr>
+      <tr>
+        <td><strong>Nombre</strong></td>
+        <td><%= @simple_booking.name %> <%= @simple_booking.last_name%></td>
+      </tr>
+      <tr>
+        <td><strong>Tu email</strong></td>
+        <td><%= @simple_booking.email %></td>
+      </tr>
+      <tr>
+        <td><strong>Tu teléfono</strong></td>
+        <td><%= @simple_booking.phone%></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
