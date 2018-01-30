@@ -1,6 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: "https://reservando.herokuapp.com/" }
+
 
     # Verifies that versions and hashed value of the package contents in the project's package.json
   config.webpacker.check_yarn_integrity = false
@@ -67,6 +66,9 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "_lobato_#{Rails.env}"
   config.action_mailer.perform_caching = false
+
+config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: "https://reservando.herokuapp.com/" }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

@@ -8,7 +8,6 @@ class BookingsController < ApplicationController
       @menu = menu
     end
 
-    @dishes = @menu.dishes
     @booking = Booking.new
   end
 

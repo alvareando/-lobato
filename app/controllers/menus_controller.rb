@@ -14,6 +14,10 @@ before_action :set_restaurant
     end
   end
 
+  def show
+
+  end
+
   private
 
   def set_restaurant

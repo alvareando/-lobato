@@ -2,6 +2,7 @@ class SimpleBookingsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_restaurant
 
+
   def new
     @simple_booking = SimpleBooking.new
   end
@@ -12,8 +13,6 @@ class SimpleBookingsController < ApplicationController
     new_simple_booking.restaurant = @restaurant
 
     if new_simple_booking.save
-      SimpleBookingMailer.restaurant_new_booking(new_simple_booking.user, new_simple_booking).deliver_now
-      SimpleBookingMailer.client_booking_details(new_simple_booking).deliver_now
       redirect_to restaurant_simple_booking_path(@restaurant, new_simple_booking), notice: "Gracias por reservar en el #{new_simple_booking.restaurant.name}"
 
     else
