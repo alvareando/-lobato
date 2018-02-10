@@ -4,5 +4,6 @@
   <%= f.input :price, required: true, label: 'Precio (€)'%>
   <%= f.input :photo, label: 'Añade una foto' %>
   <%= f.input :photo_cache, as: :hidden %>
+  <%= f.association :category, label: 'Categoría' %>
   <%= f.submit "Añadir plato", class: "btn btn-primary" %>
 <% end %>

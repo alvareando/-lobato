@@ -5,9 +5,10 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    new_restaurant = Restaurant.new(restaurant_params)
-    new_restaurant.user = current_user
-    if new_restaurant.save
+    @new_restaurant = Restaurant.new(restaurant_params)
+    @new_restaurant.user = current_user
+    if @new_restaurant.save
+      @new_restaurant.build_dashboard
       redirect_to "/dashboard"
     else
       render :new

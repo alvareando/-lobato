@@ -1,51 +1,103 @@
-
-<div class="main-container">
-  <div class="sidebar">
-    <ul>
-      <%= @user.email %>
-      <%= @restaurant.name %>
-      <%= link_to "Anadir Menu", new_menu_path, class: "btn btn-primary" %>
-    </ul>
-  </div>
-  <div class="page-content">
-    <% @menus.each do |menu| %>
-      <%= link_to "Anadir Plato a este menu", new_menu_dish_path(menu), class: "btn btn-primary" %>
-      <% menu.dishes.each do |dish| %>
-      <ul>
-        <li><%= dish.name %></li>
-        <li><%= dish.description %></li>
-        <li><%= dish.price %></li>
-      </ul>
-      <% end %>
-  </div>
-  <div class="aside">
-    <%= menu.name %>
-  </div>
-  <% end %>
-</div>
-
-
-
-
-
-
-
-
-
-
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
-    <%= @user.email %>
-    <%= @restaurant.name %>
-    <%= link_to "Anadir Menu", new_menu_path, class: "btn btn-primary" %>
+  <div class="dashboard-title">
+    <h1 class="text-center">Panel de Control</h1>
+  </div>
+  <div class="dashboard-content col-sm-12 col-md-12">
+    <div class="dashboard-content-left col-sm-7 col-md-7">
+      <div class="upper-content">
+        <div class="upper-content-left">
+          <h1> <%= @carta.name %> </h1>
+          <%= link_to "Añade platos a la carta", new_menu_dish_path(@carta), class: "btn btn-treehouse", style: "    margin-top: 25px;
+                    margin-bottom: 12.5px; margin-left: 30px;" %>
+        </div>
+        <div class="upper-content-right">
+          <% if @restaurant.menus.count <= 0 %>
+            <%= link_to "Añadir Menú", new_menu_path(@restaurant), class: "btn btn-treehouse", style: "    margin-top: 25px;
+              margin-bottom: 12.5px;"  %>
+          <% else %>
+              <div class="btn-group">
+                <%= link_to "Añadir Menú", new_menu_path(@restaurant), class: "btn btn-danger"%>
+                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toogle my friend</span>
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+              </div>
+          <% end %>
+        </div>
+
+      </div>
+      <div class="menu-navigation">
+        <% @carta.categories.each do |category| %>
+          <a href="#<%= category.name %>"> <%= category.name %></a>
+        <% end %>
+      </div>
+      <hr style="height: 1px; border:none;color:#333;background-color:#333;">
+      <div class="lower-content">
+        <% if @carta.dishes.empty? %>
+          <h2>Aún no tienes ningún plato en carta</h2>
+        <% else %>
+          <div class="menu-category">
+            <% @carta.categories.each do |category| %>
+              <div class="title">
+                <h2 id="<%= category.name %>"><%= category.name %></h2>
+              </div>
+              <div class="dishes">
+                <% @dishes.each do |dish| %>
+                  <% if category.name == dish.category.name %>
+                    <%= dish.name %>
+
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="dashboard-content-right col-sm-5 col-md-5">
+
+      <div class="tab">
+        <ul class="nav nav-tabs bookings-tabs" role="tablist">
+          <li class="active booking-tab" role="presentation"><a href="#ongoing-bookings" aria-controls="ongoing-bookings" role="tab" data-toggle="tab">Próximas Reservas (<%= @ongoing_bookings.count %>)</a></li>
+          <li class="booking-tab" role="presentation"><a href="#over-bookings" aria-controls="over-bookings" role="tab" data-toggle="tab">Reservas Pasadas (<%= @over_bookings.count %>)</a></li>
+        </ul>
+      </div>
+
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="ongoing-bookings">
+          <div class="row">
+            <% if @ongoing_bookings.empty? %>
+              <div class="empty-message">
+                <em>Todavía no tienes próximas reservas</em>
+              </div>
+            <% else %>
+              <% @ongoing_bookings.each do |simple_booking| %>
+                <%= simple_booking.name %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="over-bookings">
+          <div class="row">
+            <% if @over_bookings.empty? %>
+              <div class="empty-message">
+                <em>Todavía no tienes reservas pasadas</em>
+              </div>
+            <% else %>
+              <% @over_bookings.each do |simple_booking| %>
+                <%= simple_booking.name %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-  <% @menus.each do |menu| %>
-  <div class="col-sm-4">
-    <%= menu.name %>
-  </div>
-  <div class="col-sm-8">
-  </div>
-    <% end %>
 </div>

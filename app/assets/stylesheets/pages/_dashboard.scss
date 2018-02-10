@@ -1,3 +1,21 @@
-.main-container {
+.dashboard-content {
   display: flex;
 }
+
+.upper-content{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.upper-content-left{
+  display: flex;
+  width: auto;
+  justify-content: space-between;
+}
+
+.upper-content-right{
+  width: auto;
+  justify-content: right;
+}
+
+

@@ -1,22 +1,36 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
-      <h2>Hello, please sign in</h2>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h2 class="text-center">Hola, por favor inicia sesión</h2>
+      <hr>
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-inputs">
-          <%= f.input :email, required: false, autofocus: true %>
-          <%= f.input :password, required: false %>
-          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.input :email, label: "E-mail", autofocus: true %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.input :password, label: "Contraseña" %>
+            </div>
+          </div>
+
+          <%= f.input :remember_me, label: "Recuerdame para la próxima vez", as: :boolean if devise_mapping.rememberable? %>
         </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Log in" %>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= f.button :submit, "Log In",  class: "btn btn-treehouse btn-lg", style:"
+                width: 100%; margin-top: 20px;" %>
+          </div>
         </div>
       <% end %>
 
-      <%= render "devise/shared/links" %>
+      <p style= "margin-top: 10px;"">¿Todavía no tienes una cuenta? Haz  <%= link_to "Sign up", new_registration_path(resource_name)%></p>
+      <p><%= link_to "Quiero recuperar mi contraseña", new_password_path(resource_name) %></p>
 
     </div>
   </div>
