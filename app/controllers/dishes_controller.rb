@@ -11,6 +11,10 @@ class DishesController < ApplicationController
 
   end
 
+  def edit
+    @dish = Dish.find(params[:id])
+  end
+
   def create
     @dish = Dish.new(dish_params)
     @dish.menu = Menu.find(params[:menu_id])
@@ -21,6 +25,18 @@ class DishesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def update
+    @dish = Dish.find(params[:id])
+    @dish.update(dish_params)
+    redirect_to "/dashboard"
+  end
+
+  def destroy
+    @dish = Dish.find(params[:id])
+    @dish.destroy
+    redirect_to "/dashboard"
   end
 
   private

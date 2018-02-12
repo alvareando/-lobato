@@ -1,21 +1,68 @@
+
+// Dashboard content container
 .dashboard-content {
   display: flex;
 }
 
-.upper-content{
-  display: flex;
+// DASHBOARD LEFT
+.dashboard-content-left{
+}
+
+  // Menu Title and buttons
+  .title-and-button{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    h1{
+
+    }
+  }
+
+
+
+  // Menu Navigation
+  .categories-nav{
+    a{
+      background-color: $green;
+      color: white;
+      padding: 13px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      opacity: .7;
+      &:hover{
+        opacity: 1;
+      }
+    }
+  }
+
+  // Dishes Area
+  .dishes-area{
+
+  }
+
+  .menu-category{
+
+  }
+
+  .category-title{
+    list-style-type: circle;
+  }
+
+
+// DASHBOARD RIGHT
+.dashboard-content-right{
+
+}
+.btn-group{
   width: 100%;
-  justify-content: space-between;
-}
-.upper-content-left{
-  display: flex;
-  width: auto;
-  justify-content: space-between;
 }
 
-.upper-content-right{
-  width: auto;
-  justify-content: right;
+.menu-button{
+  width: 50%;
 }
 
+.dropdown-toggle{
+  width: 50%;
+}
 

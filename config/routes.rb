@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   #resources :booking_participations, only: [:new, :create]
 
   resources :menus, only: [:new, :create] do
-    resources :dishes, only: [:new, :create]
+    resources :dishes, only: [:new, :create, :edit, :update, :destroy]
   end
 
   get '/dashboard', to: 'pages#dashboard'
